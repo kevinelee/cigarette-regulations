@@ -4,11 +4,11 @@ import { useForm } from "react-hook-form";
 export default function Form() {
   const { register, handleSubmit, errors } = useForm();
   const onSubmit = (data) => {
-    console.log(data, "data", typeof data);
-    setContent("");
+    console.log(data, typeof data);
+    setContent(data.firstName);
   };
 
-  const [content, setContent] = useState("");
+  const [content, setContent] = useState([]);
 
   // const [date, setDate] = useState("");
 
@@ -48,7 +48,7 @@ export default function Form() {
 
   // function Options() {}
 
-  console.log("kevins sellers", sellers);
+  console.log("kevins sellers", sellers, products);
 
   return (
     <>
@@ -99,12 +99,17 @@ export default function Form() {
         />
         <p className="mb-2">Choose a product:</p>
 
-
-        <select className="border-2 border-black rounded p-2" name="Title" ref={register({ required: true })}>
+        <select
+          className="border-2 border-black rounded p-2"
+          name="product"
+          ref={register({ required: true })}
+        >
           {products.map((product) => {
             return (
               <>
-                <option value={product.product}>{product.product}</option>
+                <option key={product.upc} value={product.product}>
+                  {product.product}
+                </option>
               </>
             );
           })}
@@ -115,6 +120,7 @@ export default function Form() {
           type="submit"
         />
       </form>
+
       <div className="md:px-32 py-8 w-full">
         <div className="shadow overflow-hidden rounded border-b border-gray-200">
           <table className="min-w-full bg-white">
