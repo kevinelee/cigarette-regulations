@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 export default function Form() {
   const { register, handleSubmit, errors } = useForm();
   const onSubmit = (data) => {
-    console.log(data);
+    console.log(data, "data");
   };
 
   const [date, setDate] = useState("");
@@ -40,18 +40,16 @@ export default function Form() {
     },
   ];
 
+  // function handleChange() {
+  //   null;
+  // }
+
+  // function Options() {}
+
   console.log("kevins sellers", sellers, products);
 
   return (
     <form className="flex flex-col max-w-lg" onSubmit={handleSubmit(onSubmit)}>
-      <input
-        className=" border-2 border-black rounded p-2 my-2"
-        type="text"
-        placeholder="First 5 Letters of Company Name"
-        name="firstName"
-        maxLength={5}
-        ref={register({ required: true, maxLength: 5 })}
-      />
       {errors.firstName && (
         <p className="mb-3 text-red-500">This field is required</p>
       )}
@@ -60,7 +58,7 @@ export default function Form() {
         type="date"
         placeholder="Date"
         name="date"
-        ref={register({ required: true, maxLength: 100 })}
+        ref={register({ required: true })}
       />
       {errors.date && (
         <p className="mb-3 text-red-500">This field is required</p>
@@ -85,9 +83,34 @@ export default function Form() {
       {errors.email && (
         <p className="mb-3 text-red-500">This field is required</p>
       )}
+      <input
+        className=" border-2 border-black rounded p-2 my-2"
+        type="text"
+        placeholder="First 5 Letters of Company Name"
+        name="firstName"
+        maxLength={5}
+        ref={register({ required: true, maxLength: 5 })}
+      />
+
+      {/* <div className="flex flex-col">
+        {products.map((product) => {
+          return (
+            <>
+              <input
+                key={product.upc}
+                name="product"
+                type="radio"
+                value="Yes"
+                ref={register({ required: true })}
+              />
+              <p>{product.product}</p>
+            </>
+          );
+        })}
+      </div> */}
 
       <input
-        className="bg-green-600 hover:bg-green-500 cursor-pointer py-4"
+        className="bg-green-600 hover:bg-green-500 cursor-pointer py-4 mt-2"
         type="submit"
       />
     </form>
