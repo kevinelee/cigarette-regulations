@@ -6,9 +6,6 @@
 
 
 
-## Get started
-
-Install the Gatsby CLI:
 
 ```sh
 npm i --global gatsby-cli
